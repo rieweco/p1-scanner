@@ -116,7 +116,7 @@ public:
 
     ~Scanner();
 
-    Token *getNextToken();
+    Token *getNextToken(const std::string &rawData, int currentIndex, int currentLineNumber) const;
 };
 
 #endif

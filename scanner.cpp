@@ -1,11 +1,11 @@
 #include <map>
 #include <iostream>
 #include "scanner.h"
-//#include "utility.h"
+#include "utility.h"
 
 using namespace std;
 
-const string SUPPORTED_ALPHABET = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=<>!:+-*/&%.(){}[],;"; 
+const string SUPPORTED_ALPHABET = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=<>!:+-*/%.(){}[],;"; 
 
 const int FSA_TABLE_ROW_INDEX_END_OF_FILE = 0;
 const int FSA_TABLE_ROW_INDEX_IDENTIFIER = 1;
@@ -300,7 +300,7 @@ Scanner::Scanner() = default;
 Scanner::~Scanner() = default;
 
 
-Token *Scanner::getNextToken() {
+Token *Scanner::getNextToken(const std::string &rawData, int currentIndex, int currentLineNumber) const {
     int state = INITIAL_STATE;
     TOKEN_IDENTIFIER candidateToken = END_OF_FILE;
     string value;

@@ -6,8 +6,8 @@
 class TestScanner {
     private: 
 	bool commentFlag = false;
-	const bool tokenReadFlag(const char nextChar) const;
-	const int linesBeforeToken(const std::string &rawData, int &currentIndex);
+	const bool tokenReadFlag(const char next) const;
+	const int linesBeforeToken(const std::string &rawData, int &index);
 	
     public:
 	TestScanner();

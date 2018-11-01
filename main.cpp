@@ -2,19 +2,19 @@
 
 #include <iostream>
 #include <fstream>
-#include "parser.h"
+#include "testScanner.h"
 
 using namespace std;
 
 //vars
 static string NO_FILE_EXTENSION = "out";
-static string FILE_IN_EXTENSION = ".sp18";
+static string FILE_IN_EXTENSION = ".fs182";
 
 
 //functions
 string getKBData();
 string getFileData(string &fileName);
-void parseProgram(string &program, string &fileName);
+void runTestScanner(string &program, string &fileName);
 string trim(string &toBeTrimmed);
 
 int main(int argc, char *argv[]) {
@@ -22,13 +22,13 @@ int main(int argc, char *argv[]) {
 	
 	if (numArgs == 0) {	
     		string kbData = getKBData();
-    		parseProgram(kbData, NO_FILE_EXTENSION);
+    		runTestScanner(kbData, NO_FILE_EXTENSION);
 	}
 	else if (numArgs == 1) {
 		string fileName = argv[1];
 		string extendedFileName = fileName + FILE_IN_EXTENSION;
 		string fileData = getFileData(extendedFileName);
-		parseProgram(fileData,fileName);	
+		runTestScanner(fileData,fileName);	
 	}
 	else {
 		cout << "incorrect # of args! 0 args for kb input, 1 arg for file input." << endl;
@@ -80,8 +80,8 @@ string getFileData(string &extendedFileName) {
    	}
 }
 
-void parseProgram(string &program, string &fileName) {
-    Parser *parser = new Parser(program);
-    Node *tree = parser->parse();
-    cout << tree->toString();
+void runTestScanner(string &program, string &fileName) {
+    TestScanner *testScanner = new TestScanner();
+    string token = testScanner->scan(program);
+    cout << token << endl;
 }
